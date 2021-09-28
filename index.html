@@ -1,24 +1,100 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" type="text/css" href="styles.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+#myInput {
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 2x solid #ddd;
+  margin-bottom: 12px;
+  border-color: #fcbe03;
+  background-color: #081828;
+  color:#ffffff;
+}
+
+#myUL {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+#myUL li a {
+  border: 1px solid #ddd;
+  margin-top: -1px; /* Prevent double borders */
+  background-color: #081828;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px;
+  color: #ff0044;
+  display: block
+}
+
+#myUL li p {
+  border: 1px solid #ddd;
+  margin-top: -1px; /* Prevent double borders */
+  background-color: #081828;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px;
+  color: #00ff55;
+  display: block
+}
+
+#myUL li a:hover:not(.header) {
+  background-color: #eee;
+}
+
+body{
+    background-color: #081828;
+   
+}
+
+h2{
+    color:#ffffff;
+}
+</style>
 </head>
 <body>
-	<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
-	
-	<ul id="myUL">
-  		<li><a href="#">Adele</a></li>
-  		<li><a href="#">Agnes</a></li>
 
-  		<li><a href="#">Billy</a></li>
-  		<li><a href="#">Bob</a></li>
+<h2>My Cheatsheet</h2>
 
-  		<li><a href="#">Calvin</a></li>
-  		<li><a href="#">Christina</a></li>
-  		<li><a href="#">Cindy</a></li>
-	</ul>
+<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for questions.." title="Type in a name">
+
+<ul id="myUL">
+  <li><a href="#">question 1</a><p>answer1</p></li>
+  <li><a href="#">question2</a><p>answer2</p></li>
+  <li><a href="#">question3</a><p>answer3</p></li>
+  <li><a href="#">question4</a><p>answer4</p></li>
+  <li><a href="#">question5</a><p>answer5</p></li>
+  <li><a href="#">question6</a><p>answer6</p></li>
+  <li><a href="#">question7</a><p>answer7</p></li>
+</ul>
+
+<script>
+function myFunction() {
+    var input, filter, ul, li, a, i, txtValue;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("myUL");
+    li = ul.getElementsByTagName("li");
+    for (i = 0; i < li.length; i++) {
+        a = li[i].getElementsByTagName("a")[0];
+        txtValue = a.textContent || a.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+        } else {
+            li[i].style.display = "none";
+        }
+    }
+}
+</script>
 
 </body>
 </html>
+
