@@ -7,39 +7,27 @@
   box-sizing: border-box;
 }
 
-#myInput {
-  width: 100%;
-  font-size: 16px;
-  padding: 12px 20px 12px 40px;
-  border: 2x solid #ddd;
-  border-radius:10px;
-  margin-bottom: 12px;
-  border-color: #fcbe03;
-  background-color: #081828;
-  color:#ffffff;
-}
-  
-#myInput:focus, input:focus{
-    outline: none;
-}
+
 
 #myUL {
-  list-style-type: none;
-  padding: 0;
+  list-style-type: 1;
+  color: #81A1C1;
+  padding: 0px 20px;
   margin: 0;
+  line-height: 5px;
 }
 
 #myUL li a {
   margin-top: -1px; /* Prevent double borders */
-  background-color: #081828;
-  padding: 12px;
+  color: #81A1C1;
+  padding: 10px;
   text-decoration: none;
   font-size: 18px;
-  color: #ff0044;
-  display: block
+  display: block;
+  text-align: justify;
 }
 
-#myUL li p {
+#myUL li h3 {
   margin-top: -1px; /* Prevent double borders */
   background-color: #081828;
   padding: 12px;
@@ -50,55 +38,149 @@
 }
 
 #myUL li a:hover:not(.header) {
-  background-color: #0b233b;
+  background-color: #3B4252;
 }
 
 body{
-    background-color: #081828;
+    background-color: #2E3440;
    
 }
 
-h2{
-    color:#ffffff;
+h1{
+    color:#B48EAD;
+}
+span{
+  text-align: right;
+}
+
+#toWatch-s{
+    color:#BF616A;
+}
+
+#haveWatched-s{
+    color:#A3BE8C;
+}
+#toWatch-m{
+    color:#D08770;
+}
+
+#haveWatched-m{
+    color:#88C0D0;
 }
 </style>
 </head>
 <body>
 
-<h2>My Cheatsheet</h2>
+<h1>My Anime List</h1>
 
-<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for questions.." title="Type in a name">
+<h2 id='toWatch-s'>to watch [series]</h2>
+<ol id="myUL" type="1">
+  <li><a href="https://animixplay.to/v1/kimetsu-no-yaiba" target="_blank">demon slayer</a></li>
+  <li><a href="https://animixplay.to/v1/boku-no-hero-academia" target="_blank">my hero academy</a></li>
+  <li><a href="https://animixplay.to/v1/one-punch-man" target="_blank">one punch man</a></li>
+  <li><a href="https://animixplay.to/v1/komi-san-wa-comyushou-desu" target="_blank">komi-san can't communicate</a></li>
+  <li><a href="https://animixplay.to/v1/k-on" target="_blank">k-on</a></li>
+  <li><a href="https://animixplay.to/v1/seishun-buta-yarou-wa-bunny-girl-senpai-no-yume-wo-minai" target="_blank">bunny girl senpai</a></li>
+  <li><a href="https://animixplay.to/anime/1575/Code_Geass__Hangyaku_no_Lelouch" target="_blank">code geass</a></li>
+  <li><a href="https://animixplay.to/anime/28223/Death_Parade" target="_blank">death parade</a></li>
+  <li><a href="https://animixplay.to/anime/11061/Hunter_x_Hunter_2011" target="_blank">hunter X hunter</a></li>
+  <li><a href="https://animixplay.to/v1/devilman-crybaby" target="_blank">devilman crybaby</a></li>
+  <li><a href="https://animixplay.to/v1/black-clover-tv" target="_blank">black clover</a></li>
+  <li><a href="https://animixplay.to/v1/violet-evergarden" target="_blank">violet evergarden</a></li>
+  <li><a href="https://animixplay.to/v1/shigatsu-wa-kimi-no-uso" target="_blank">your lie in april</a></li>
+  <li><a href="https://animixplay.to/v1/anohana" target="_blank">anohana</a></li>
+  <li><a href="https://animixplay.to/v1/bleach" target="_blank">bleach</a></li>
+  <li><a href="https://animixplay.to/v1/burn-the-witch" target="_blank">burn the witch</a></li>
+  <li><a href="https://animixplay.to/v1/fruits-basket-2019" target="_blank">fruits basket</a></li>
+  <li><a href="https://animixplay.to/v1/gintama" target="_blank">gintama</a></li>
+  <li><a href="https://animixplay.to/v1/vinland-saga" target="_blank">vinland saga</a></li>
+  <li><a href="https://animixplay.to/v1/fate-zero" target="_blank">fate/zero</a></li>
+  <li><a href="https://animixplay.to/v1/mob-psycho-100" target="_blank">mob psycho 100</a></li>
+  <li><a href="https://animixplay.to/v1/takt-op-destiny" target="_blank">takt:op destiny</a></li>
+  <li><a href="https://animixplay.to/v1/clannad" target="_blank">clannad</a></li>
+  <li><a href="https://animixplay.to/v1/monster" target="_blank">monster</a></li>
+  <li><a href="https://animixplay.to/v1/bakemonogatari" target="_blank">bakemonogatari</a></li>
+  <li><a href="https://animixplay.to/v1/hyouka" target="_blank">hyouka</a></li>
+  <li><a href="https://animixplay.to/v1/haikyuu" target="_blank">haikyuu</a></li>
+  <li><a href="https://animixplay.to/v7/4545-puella-magi-madoka-magica-side-story-magia-record-tv" target="_blank">madoko magica</a></li>
+  <li><a href="https://animixplay.to/v1/the-god-of-high-school" target="_blank">the god of highschool</a></li>
+  <li><a href="https://animixplay.to/v1/school-days-" target="_blank">school days</a></li>
+  <li><a href="https://animixplay.to/v1/satsuriku-no-tenshi" target="_blank">satsuriku no tenshi</a></li>
+  <li><a href="https://animixplay.to/v1/hataraku-maou-sama" target="_blank">hataraku maou-sama</a></li>
+  <li><a href="https://animixplay.to/v1/chainsaw-man" target="_blank">chainsaw man</a></li>
+  <li><a href="https://animixplay.to/v1/kono-bijutsubu-ni-wa-mondai-ga-aru" target="_blank">kono bijutsubu ni wa mondai ga aru</a></li>
+  <li><a href="https://animixplay.to/v1/gosick" target="_blank">gosick</a></li>
+  <li><a href="https://animixplay.to/v1/cowboy-bebop" target="_blank">cowboy bepop</a></li>
+  <li><a href="https://animixplay.to/v1/boogiepop-wa-warawanai-2019" target="_blank">boogiepop wa warawanai</a></li>
+  <li><a href="https://animixplay.to/v1/jojos-bizarre-adventure" target="_blank">jojo</a></li>
+</ol>
 
-<ul id="myUL">
-  <li><a href="#">question 1</a><p>answer1</p></li>
-  <li><a href="#">question2</a><p>answer2</p></li>
-  <li><a href="#">question3</a><p>answer3</p></li>
-  <li><a href="#">question4</a><p>answer4</p></li>
-  <li><a href="#">question5</a><p>answer5</p></li>
-  <li><a href="#">question6</a><p>answer6</p></li>
-  <li><a href="#">question7</a><p>answer7</p></li>
-</ul>
 
-<script>
-function myFunction() {
-    var input, filter, ul, li, a, i, txtValue;
-    input = document.getElementById("myInput");
-    filter = input.value.toUpperCase();
-    ul = document.getElementById("myUL");
-    li = ul.getElementsByTagName("li");
-    for (i = 0; i < li.length; i++) {
-        a = li[i].getElementsByTagName("a")[0];
-        txtValue = a.textContent || a.innerText;
-        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-            li[i].style.display = "";
-        } else {
-            li[i].style.display = "none";
-        }
-    }
-}
-</script>
+<h2 id='haveWatched-s'>have watched [series]</h2>
+<ol id="myUL" type="1">
+  <li><a href="https://animixplay.to/v1/noragami" target="_blank">noragami   (8.5/10)</a></li>
+  <li><a href="https://animixplay.to/v1/kemono-jihen" target="_blank">kemono jihen   (7.5/10)</a></li>
+  <li><a href="https://animixplay.to/v1/death-note" target="_blank">death note   (9/10)</a></li>
+  <li><a href="https://animixplay.to/v1/kono-subarashii-sekai-ni-shukufuku-wo-" target="_blank">konosuba   (7.5/10)</a></li>
+  <li><a href="https://animixplay.to/v1/naruto" target="_blank">naruto   (9/10)</a></li>
+  <li><a href="https://animixplay.to/v1/shingeki-no-kyojin" target="_blank">attack on titan   (10/10)</a></li>
+  <li><a href="https://animixplay.to/v1/jujutsu-kaisen-tv" target="_blank">jujutsu kaisen   (8/10)</a></li>
+  <li><a href="https://animixplay.to/v1/steinsgate" target="_blank">stiens gate   (9/10)</a></li>
+  <li><a href="https://animixplay.to/v1/steinsgate" target="_blank">kokoro connect   (6/10)</a></li>
+  <li><a href="https://animixplay.to/v1/tokyo-ghoul" target="_blank">tokyo ghoul   (8.5/10)</a></li>
+  <li><a href="https://animixplay.to/v1/rezero-kara-hajimeru-isekai-seikatsu" target="_blank">re zero [S1]   (6/10)</a></li>
+  <li><a href="https://animixplay.to/v1/sword-art-online" target="_blank">sword art online   (3/10)</a></li>
+  <li><a href="https://animixplay.to/v1/tokyo-revengers-uncensored" target="_blank">tokyo revengers   (7/10)</a></li>
+  <li><a href="https://animixplay.to/v1/dororo" target="_blank">dororo   (7.5/10)</a></li>
+  <li><a href="https://animixplay.to/v1/fullmetal-alchemist-brotherhood" target="_blank">fullmetal alchemist(brotherhood)   (8/10)</a></li>
+  <li><a href="https://animixplay.to/v1/samurai-champloo" target="_blank">samurai champloo   (8.5/10)</a></li>
+  <li><a href="https://animixplay.to/v1/neon-genesis-evangelion-" target="_blank">neon genesis evangelion   (8/10)</a></li>
+  <li><a href="https://animixplay.to/v1/kaguya-sama-wa-kokurasetai-tensai-tachi-no-renai-zunousen" target="_blank">love is war   (8.5/10)</a></li>
+  <li><a href="https://animixplay.to/v1/kobayashi-san-chi-no-maid-dragon" target="_blank">miss kobayashi's dragon maid   (9/10)</a></li>
+  <li><a href="https://animixplay.to/v1/nichijou" target="_blank">nichijou   (8.5/10)</a></li>
+  <li><a href="https://animixplay.to/v1/danshi-koukousei-no-nichijou" target="_blank">danshi koukousei no nichijou   (8.5/10)</a></li>
+  <li><a href="https://animixplay.to/v1/boku-dake-ga-inai-machi" target="_blank">erased   (9/10)</a></li>
+  <li><a href="https://animixplay.to/v1/toradora" target="_blank">toradora   (8.5/10)</a></li>
+  <li><a href="https://animixplay.to/v1/great-pretender" target="_blank">great pretender   (7/10)</a></li>
+  <li><a href="https://animixplay.to/v1/kujira-no-kora-wa-sajou-ni-utau" target="_blank">children of the whales   (7/10)</a></li>
+  <li><a href="https://animixplay.to/v1/youkoso-jitsuryoku-shijou-shugi-no-kyoushitsu-e-tv" target="_blank">classroom of the elite   (8.5/10)</a></li>
+  <li><a href="https://animixplay.to/v1/kakegurui" target="_blank">kakeguri   (7/10)</a></li>
+  <li><a href="https://animixplay.to/v1/charlotte" target="_blank">charlotte   (7/10)</a></li>
+  <li><a href="https://animixplay.to/v1/horimiya" target="_blank">horimiya   (8/10)</a></li>
+  <li><a href="https://animixplay.to/v1/sakurasou-no-pet-na-kanojo" target="_blank">sakurasou no pet na kanojo   (6/10)</a></li>
+  <li><a href="https://animixplay.to/v1/zankyou-no-terror" target="_blank">terror in resonance   (9/10)</a></li>
+</ol>
+
+
+<h2 id='toWatch-m'>to watch [movies]</h2>
+<ol id="myUL" type="1">
+  <li><a href="https://animixplay.to/v1/howls-moving-castle" target="_blank">howl's moving castle</a></li>
+  <li><a href="https://animixplay.to/v1/nakitai-watashi-wa-neko-wo-kaburu" target="_blank">a whisker away</a></li>
+  <li><a href="https://animixplay.to/v1/evangelion-10-you-are-not-alone" target="_blank">evangelion (1.0,2.0,3.0,3.0+1.0)</a></li>
+  <li><a href="https://animixplay.to/v1/5-centimeters-per-second" target="_blank">5 centimeter per second</a></li>
+  <li><a href="https://animixplay.to/v1/sora-no-aosa-wo-shiru-hito-yo" target="_blank">her blue sky</a></li>
+  <li><a href="https://animixplay.to/v1/uchiage-hanabi-shita-kara-miru-ka-yoko-kara-miru-ka" target="_blank">fireworks</a></li>
+  <li><a href="https://animixplay.to/v1/kaze-tachinu-the-wind-rises" target="_blank">the wind rises</a></li>
+  <li><a href="https://animixplay.to/v1/umibe-no-etranger" target="_blank">umibe no etranger</a></li>
+  <li><a href="https://animixplay.to/v1/little-witch-academia" target="_blank">little witch academia</a></li>
+</ol>
+
+
+<h2 id='haveWatched-m'>have watched [movies]</h2>
+<ol id="myUL" type="1">
+  <li><a href="https://animixplay.to/v1/spirited-away" target="_blank">spirited away   (8/10)</a></li>
+  <li><a href="https://animixplay.to/v1/grave-of-the-fireflies" target="_blank">grave of the fireflies   (8/10)</a></li>
+  <li><a href="https://animixplay.to/v1/ookami-kodomo-no-ame-to-yuki" target="_blank">wolf children   (9/10)</a></li>
+  <li><a href="https://animixplay.to/v1/tenki-no-ko" target="_blank">tenki no no   (9.5/10)</a></li>
+  <li><a href="https://animixplay.to/v1/kimi-no-na-wa" target="_blank">your name   (9.5/10)</a></li>
+  <li><a href="https://animixplay.to/v1/koe-no-katachi-movie" target="_blank">silent voice   (9/10)</a></li>
+  <li><a href="https://animixplay.to/v1/hotarubi-no-mori-e-2011" target="_blank">hotarubi no mori e   (8/10)</a></li>
+  <li><a href="https://animixplay.to/v1/children-who-chase-lost-voices" target="_blank">children who chase lost voices   (7/10)</a></li>
+  <li><a href="https://animixplay.to/v1/the-girl-who-leapt-through-time" target="_blank">the girl who lept through time   (7.5/10)</a></li>
+  <li><a href="https://animixplay.to/v1/josee-to-tora-to-sakana-tachi" target="_blank">josee, the tiger and the fish   (9/10)</a></li>
+  <li><a href="https://animixplay.to/v1/kimi-no-suizou-wo-tabetai" target="_blank">i want to eat your pancreas   (9.5/10)</a></li>
+  <li><a href="https://animixplay.to/v1/hello-world" target="_blank">hello world   (6/10)</a></li>
+</ol>
 
 </body>
 </html>
-
-
