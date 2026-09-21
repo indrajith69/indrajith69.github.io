@@ -53,9 +53,26 @@ h1 {
     color: #BF616A;
 }
 
-/* Notification Button Styling */
+/* Notification Section Styling */
 .notify-container {
     margin-bottom: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 300px;
+}
+
+#messageInput {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #4C566A;
+    background-color: #3B4252;
+    color: #ECEFF4;
+}
+
+#messageInput::placeholder {
+    color: #D8DEE9;
 }
 
 #notifyBtn {
@@ -79,9 +96,10 @@ h1 {
 
 <h1>My Dashboard</h1>
 
-<!-- Notification Button Section -->
+<!-- Notification Input & Button Section -->
 <div class="notify-container">
-    <button id="notifyBtn">Send Notification (to indrajith)</button>
+    <input type="text" id="messageInput" placeholder="Type custom message...">
+    <button id="notifyBtn">Send Notification(to indrajith)</button>
 </div>
 
 <h2 id='cont'>Contacts</h2>
@@ -103,13 +121,17 @@ h1 {
   <li>code: YFBN-DJZZ</li>
 </ol>
 
-<!-- JavaScript to handle Pushover Notification Request -->
+<!-- JavaScript to handle Pushover Notification Request with Custom Text -->
 <script>
     document.getElementById('notifyBtn').addEventListener('click', () => {
+        const userInput = document.getElementById('messageInput').value;
+        // Fallback message if the input box is left empty
+        const messageToSend = userInput.trim() !== "" ? userInput : "Hello! Default notification from GitHub website.";
+
         const formData = new FormData();
         formData.append("token", "aarapm5cj78uy77awj9n9e1p4smfao"); // Replace with your Pushover App/API Token
         formData.append("user", "uv263pmavx8tcr1qw4bdfw5v338t5w"); // Your User Key
-        formData.append("message", "Hello! This is a notification triggered from your GitHub website.");
+        formData.append("message", messageToSend);
 
         fetch("https://api.pushover.net/1/messages.json", {
             method: "POST",
@@ -118,6 +140,7 @@ h1 {
         .then(response => {
             if (response.ok) {
                 alert("Notification sent successfully!");
+                document.getElementById('messageInput').value = ""; // Clear input after sending
             } else {
                 alert("Failed to send notification. Check console for details.");
                 console.error("Pushover Error:", response);
