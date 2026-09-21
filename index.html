@@ -7,8 +7,6 @@
   box-sizing: border-box;
 }
 
-
-
 #myUL {
   list-style-type: 1;
   color: #81A1C1;
@@ -17,8 +15,8 @@
   line-height: 5px;
 }
 
-#myUL li{
-  margin-top: -1px; /* Prevent double borders */
+#myUL li {
+  margin-top: -1px;
   color: #81A1C1;
   padding: 10px;
   text-decoration: none;
@@ -28,52 +26,65 @@
 }
 
 #myUL li h3 {
-  margin-top: -1px; /* Prevent double borders */
+  margin-top: -1px;
   background-color: #081828;
   padding: 12px;
   text-decoration: none;
   font-size: 18px;
   color: #00ff55;
-  display: block
+  display: block;
 }
 
 #myUL li a:hover:not(.header) {
   background-color: #3B4252;
 }
 
-body{
+body {
     background-color: #2E3440;
-   
+    font-family: Arial, sans-serif;
+    padding: 20px;
 }
 
-h1{
-    color:#B48EAD;
-}
-span{
-  text-align: right;
+h1 {
+    color: #B48EAD;
 }
 
-#cont{
-    color:#BF616A;
+#cont {
+    color: #BF616A;
 }
 
-#haveWatched-s{
-    color:#A3BE8C;
-}
-#toWatch-m{
-    color:#D08770;
+/* Notification Button Styling */
+.notify-container {
+    margin-bottom: 25px;
 }
 
-#haveWatched-m{
-    color:#88C0D0;
+#notifyBtn {
+    background-color: #A3BE8C;
+    color: #2E3440;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+#notifyBtn:hover {
+    background-color: #8FBCBB;
 }
 </style>
 </head>
 <body>
 
-<h1></h1>
+<h1>My Dashboard</h1>
 
-<h2 id='cont'> Contacts</h2>
+<!-- Notification Button Section -->
+<div class="notify-container">
+    <button id="notifyBtn">Send Phone Notification</button>
+</div>
+
+<h2 id='cont'>Contacts</h2>
 <ol id="myUL" type="1">
   <li>Indrajith: 7356938074</li>
   <li>Lechu: 9633286201</li>
@@ -86,12 +97,38 @@ span{
   <li>Nandil: 8921095698</li>
 </ol>
 
-<h2 id='cont'>online chat</h2>
+<h2 id='cont'>Online Chat</h2>
 <ol id="myUL" type="1">
   <li>url: <a href="https://nesturl.online/">nesturl.online</a></li>
   <li>code: YFBN-DJZZ</li>
 </ol>
 
+<!-- JavaScript to handle Pushover Notification Request -->
+<script>
+    document.getElementById('notifyBtn').addEventListener('click', () => {
+        const formData = new FormData();
+        formData.append("token", "aarapm5cj78uy77awj9n9e1p4smfao"); // Replace with your Pushover App/API Token
+        formData.append("user", "uv263pmavx8tcr1qw4bdfw5v338t5w"); // Your User Key
+        formData.append("message", "Hello! This is a notification triggered from your GitHub website.");
+
+        fetch("https://api.pushover.net/1/messages.json", {
+            method: "POST",
+            body: formData
+        })
+        .then(response => {
+            if (response.ok) {
+                alert("Notification sent successfully!");
+            } else {
+                alert("Failed to send notification. Check console for details.");
+                console.error("Pushover Error:", response);
+            }
+        })
+        .catch(error => {
+            console.error("Error:", error);
+            alert("An error occurred while sending the notification.");
+        });
+    });
+</script>
 
 </body>
 </html>
