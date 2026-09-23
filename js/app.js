@@ -59,28 +59,25 @@ if (!visitorId) {
 let displayName = localStorage.getItem("chat_display_name") || "";
 let chatUnsubscribe = null;
 
-// Default / Fallback Contacts List
-const defaultContacts = [
-  { name: "Indrajith", phone: "7356938074" },
-  { name: "Lechu", phone: "9633286201" },
-  { name: "Alee", phone: "9778219113" },
-  { name: "Adithyan", phone: "7012320623" },
-  { name: "Lezin", phone: "9633179406" },
-  { name: "Deepu", phone: "8129240589" },
-  { name: "Bipha", phone: "7356848314" },
-  { name: "Gopika", phone: "9995964874" },
-  { name: "Nandil", phone: "8921095698" }
-];
-
-let dashboardContacts = [...defaultContacts];
+// Load cached contacts from localStorage to prevent flash of old content
+let dashboardContacts = [];
+try {
+  const cached = localStorage.getItem("comms_cached_contacts");
+  if (cached) {
+    dashboardContacts = JSON.parse(cached);
+  }
+} catch (e) {}
 
 // Real-Time Dynamic Contacts Listener from Firestore
 function listenToDynamicContacts() {
   db.collection("incidents").doc("common_room").onSnapshot((doc) => {
     if (doc.exists) {
       const data = doc.data();
-      if (data && Array.isArray(data.contacts) && data.contacts.length > 0) {
+      if (data && Array.isArray(data.contacts)) {
         dashboardContacts = data.contacts;
+        try {
+          localStorage.setItem("comms_cached_contacts", JSON.stringify(data.contacts));
+        } catch (e) {}
         renderContacts();
         renderInviteContacts();
       }
@@ -92,6 +89,10 @@ function listenToDynamicContacts() {
 
 function renderContacts() {
   contactsList.innerHTML = "";
+  if (!dashboardContacts || dashboardContacts.length === 0) {
+    contactsList.innerHTML = `<span style="color: var(--nord3); font-size: 0.9rem;">Loading contacts...</span>`;
+    return;
+  }
   dashboardContacts.forEach(contact => {
     const row = document.createElement("div");
     row.className = "contact-row";
@@ -116,6 +117,10 @@ function renderContacts() {
 // Render Invite Modal Contacts
 function renderInviteContacts() {
   inviteContactsList.innerHTML = "";
+  if (!dashboardContacts || dashboardContacts.length === 0) {
+    inviteContactsList.innerHTML = `<span style="color: var(--nord3); font-size: 0.85rem; padding: 8px 0;">Loading contacts...</span>`;
+    return;
+  }
   dashboardContacts.forEach(contact => {
     const row = document.createElement("div");
     row.className = "invite-contact-row";
