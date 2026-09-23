@@ -1,157 +1,167 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-* {
-  box-sizing: border-box;
-}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Comms</title>
+  <meta name="description" content="Minimal flat Nordic dashboard and online chat.">
+  
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Nordic Flat Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
 
-#myUL {
-  list-style-type: 1;
-  color: #81A1C1;
-  padding: 0px 20px;
-  margin: 0;
-  line-height: 5px;
-}
-
-#myUL li {
-  margin-top: -1px;
-  color: #81A1C1;
-  padding: 10px;
-  text-decoration: none;
-  font-size: 18px;
-  display: block;
-  text-align: justify;
-}
-
-#myUL li h3 {
-  margin-top: -1px;
-  background-color: #081828;
-  padding: 12px;
-  text-decoration: none;
-  font-size: 18px;
-  color: #00ff55;
-  display: block;
-}
-
-#myUL li a {
-  background-color: #B48EAD;
-}
-
-body {
-    background-color: #2E3440;
-    font-family: Arial, sans-serif;
-    padding: 20px;
-}
-
-h1 {
-    color: #B48EAD;
-}
-
-#cont {
-    color: #BF616A;
-}
-
-/* Notification Section Styling */
-.notify-container {
-    margin-bottom: 25px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    max-width: 300px;
-}
-
-#messageInput {
-    padding: 10px;
-    font-size: 16px;
-    border-radius: 5px;
-    border: 1px solid #4C566A;
-    background-color: #3B4252;
-    color: #ECEFF4;
-}
-
-#messageInput::placeholder {
-    color: #D8DEE9;
-}
-
-#notifyBtn {
-    background-color: #A3BE8C;
-    color: #2E3440;
-    border: none;
-    padding: 12px 20px;
-    font-size: 16px;
-    font-weight: bold;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.2s;
-}
-
-#notifyBtn:hover {
-    background-color: #8FBCBB;
-}
-</style>
+  <!-- Firebase SDKs (Compat) -->
+  <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore-compat.js"></script>
 </head>
 <body>
 
-<h1>My Dashboard</h1>
+  <div class="nordic-container">
 
-<!-- Notification Input & Button Section -->
-<div class="notify-container">
-    <input type="text" id="messageInput" placeholder="Type custom message...">
-    <button id="notifyBtn">Send Message (to indrajith)</button>
-</div>
+    <!-- ==================================================================
+         VIEW 1: COMMS DASHBOARD
+         ================================================================== -->
+    <main id="dashboardView" class="nordic-view active-view">
+      
+      <h1 class="page-title">Comms</h1>
 
-<h2 id='cont'>Contacts</h2>
-<ol id="myUL" type="1">
-  <li>Indrajith: 7356938074</li>
-  <li>Lechu: 9633286201</li>
-  <li>Alee: 9778219113</li>
-  <li>Adithyan: 7012320623</li>
-  <li>Lezin: 9633179406</li>
-  <li>Deepu: 8129240589</li>
-  <li>Bipha: 7356848314</li>
-  <li>Gopika: 9995964874</li>
-  <li>Nandil: 8921095698</li>
-</ol>
+      <!-- Custom Message & Alert Trigger -->
+      <form id="dispatchForm" class="dispatch-form">
+        <input 
+          type="text" 
+          id="customMessageInput" 
+          class="nord-input" 
+          placeholder="Type custom message..." 
+          autocomplete="off"
+        />
+        <button type="submit" id="sendMessageBtn" class="nord-btn-primary">
+          Send Alert Notification
+        </button>
+      </form>
 
-<h2 id='cont'>Online Chat</h2>
-<ol id="myUL" type="1">
-  <li>url: <a href="https://nesturl.online/">nesturl.online</a></li>
-  <li>code: YFBN-DJZZ</li>
-</ol>
-<p>The message at top will be sent to me, but cant reply. so use it to notify before joining the chat via the website and using the code</p>
-<!-- JavaScript to handle Pushover Notification Request with Custom Text -->
-<script>
-    document.getElementById('notifyBtn').addEventListener('click', () => {
-        const userInput = document.getElementById('messageInput').value;
-        // Fallback message if the input box is left empty
-        const messageToSend = userInput.trim() !== "" ? userInput : "Hello! Default notification from GitHub website.";
+      <!-- Online Chat Entry (Placed Above Contacts) -->
+      <section class="dashboard-section">
+        <h2 class="section-title">Online Chat</h2>
+        <div class="chat-entry-box">
+          <button type="button" id="enterChatBtn" class="nord-btn-chat-primary">
+            Open Chat Room
+          </button>
+        </div>
+      </section>
 
-        const formData = new FormData();
-        formData.append("token", "aarapm5cj78uy77awj9n9e1p4smfao"); // Replace with your Pushover App/API Token
-        formData.append("user", "uv263pmavx8tcr1qw4bdfw5v338t5w"); // Your User Key
-        formData.append("message", messageToSend);
+      <!-- Contacts List -->
+      <section class="dashboard-section">
+        <h2 class="section-title">Contacts</h2>
+        <div id="contactsList" class="contacts-compact-list">
+          <!-- Rendered dynamically -->
+        </div>
+      </section>
 
-        fetch("https://api.pushover.net/1/messages.json", {
-            method: "POST",
-            body: formData
-        })
-        .then(response => {
-            if (response.ok) {
-                alert("Notification sent successfully!");
-                document.getElementById('messageInput').value = ""; // Clear input after sending
-            } else {
-                alert("Failed to send notification. Check console for details.");
-                console.error("Pushover Error:", response);
-            }
-        })
-        .catch(error => {
-            console.error("Error:", error);
-            alert("An error occurred while sending the notification.");
-        });
-    });
-</script>
+    </main>
 
+    <!-- ==================================================================
+         VIEW 2: ONLINE CHAT ROOM
+         ================================================================== -->
+    <section id="chatView" class="nordic-view">
+      
+      <!-- Chat Header -->
+      <header class="chat-topbar">
+        <button type="button" id="backToDashboardBtn" class="nord-btn-back">
+          Back
+        </button>
+        <div class="chat-topbar-info">
+          <span class="chat-title-text">Online Chat</span>
+        </div>
+        <div class="chat-topbar-actions">
+          <button type="button" id="clearChatBtn" class="nord-btn-clear" title="Clear all messages">
+            Clear
+          </button>
+          <button type="button" id="inviteContactBtn" class="nord-btn-invite" title="Invite contact">
+            Invite
+          </button>
+          <button type="button" id="userProfileBtn" class="nord-user-btn" title="Change display name">
+            <span id="userNameLabel">Set Name</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- Chat Feed -->
+      <div id="chatMessages" class="chat-feed">
+        <div id="chatEmptyState" class="chat-empty-notice">
+          No messages yet. Start the conversation.
+        </div>
+      </div>
+
+      <!-- Chat Input Form -->
+      <form id="chatForm" class="chat-bottom-bar">
+        <input 
+          type="text" 
+          id="chatInput" 
+          class="nord-chat-input" 
+          placeholder="Type message..." 
+          autocomplete="off" 
+          maxlength="500"
+        />
+        <button type="submit" id="chatSendBtn" class="nord-btn-send">
+          Send
+        </button>
+      </form>
+
+    </section>
+
+  </div>
+
+  <!-- Display Name Modal Dialog -->
+  <div id="nameModal" class="nord-modal-backdrop">
+    <div class="nord-modal-box">
+      <h3 class="modal-heading">Display Name</h3>
+      <p class="modal-subtext">Enter a name to chat in this session.</p>
+
+      <form id="nameForm" class="modal-form">
+        <input 
+          type="text" 
+          id="displayNameInput" 
+          class="nord-input" 
+          placeholder="Enter display name..." 
+          maxlength="24"
+          required
+        />
+        <div class="modal-btn-row">
+          <button type="button" id="randomGuestBtn" class="nord-btn-secondary">
+            Random
+          </button>
+          <button type="submit" class="nord-btn-primary">
+            Join
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Invite Contact Modal Dialog -->
+  <div id="inviteModal" class="nord-modal-backdrop">
+    <div class="nord-modal-box invite-modal-box">
+      <div class="modal-header-row">
+        <h3 class="modal-heading">Invite Contact</h3>
+        <button type="button" id="closeInviteModalBtn" class="nord-btn-close">Close</button>
+      </div>
+      <p class="modal-subtext">Select a contact to send an email invitation requesting them to join this chat room.</p>
+
+      <div id="inviteContactsList" class="invite-contacts-list">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Stack -->
+  <div id="toastContainer" class="toast-stack"></div>
+
+  <!-- Script -->
+  <script src="js/app.js"></script>
 </body>
 </html>
